@@ -20,7 +20,7 @@
     {
       "id": "background",
       "type": "background",
-      "paint": {"background-color": "hsl(47, 26%, 88%)"}
+      "paint": {"background-color": "rgba(255, 255, 255, 1)"}
     },
     {
       "id": "landuse-residential",
