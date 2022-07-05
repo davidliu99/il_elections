@@ -6,19 +6,239 @@
 <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
 <script src="https://unpkg.com/maplibre-gl@2.1.9/dist/maplibre-gl.js"></script>
 <link href="https://unpkg.com/maplibre-gl@2.1.9/dist/maplibre-gl.css" rel="stylesheet" />
-<style>
-	body { margin: 0; padding: 0; }
-	#map { position: absolute; top: 0; bottom: 0; width: 100%; }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<style>
-.mapboxgl-popup {
-max-width: 400px;
-font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-}
-</style>
-<div id="map"></div>
+
+<div id="container">
+    <!-- Header -->
+    <div id="header">
+        <div style="font-size:1.8rem; text-align: center; font-weight: 400;">
+            Illinois Election Results
+        </div>
+    </div>
+    <hr>
+
+    <!-- Year selection -->
+    <div style="text-align:center;">
+        Select a year.
+    </div>
+    <div class="settings">
+        <div id="year-grid">
+            <div>
+                <li>
+                    <input type="radio" onclick="changeYear()" id="year98" name="year"/>
+                    <label for="year98">1998</label>
+                </li>
+            </div>
+            <div>
+                <li>
+                    <input type="radio" onclick="changeYear()" id="year00" name="year"/>
+                    <label for="year00">2000</label>
+                </li>
+            </div>
+            <div>
+                <li>
+                    <input type="radio" onclick="changeYear()" id="year02" name="year"/>
+                    <label for="year02">2002</label>
+                </li>
+            </div>
+            <div>
+                <li>
+                    <input type="radio" onclick="changeYear()" id="year04" name="year"/>
+                    <label for="year04">2004</label>
+                </li>
+            </div>
+            <div>
+                <li>
+                    <input type="radio" onclick="changeYear()" id="year06" name="year"/>
+                    <label for="year06">2006</label>
+                </li>
+            </div>
+            <div>
+                <li>
+                    <input type="radio" onclick="changeYear()" id="year08" name="year"/>
+                    <label for="year08">2008</label>
+                </li>
+            </div>
+            <div>
+                <li>
+                    <input type="radio" onclick="changeYear()" id="year10" name="year"/>
+                    <label for="year10">2010</label>
+                </li>
+            </div>
+            <div>
+                <li>
+                    <input type="radio" onclick="changeYear()" id="year12" name="year"/>
+                    <label for="year12">2012</label>
+                </li>
+            </div>
+            <div>
+                <li>
+                    <input type="radio" onclick="changeYear()" id="year14" name="year"/>
+                    <label for="year14">2014</label>
+                </li>
+            </div>
+            <div>
+                <li>
+                    <input type="radio" onclick="changeYear()" id="year16" name="year"/>
+                    <label for="year16">2016</label>
+                </li>
+            </div>
+            <div>
+                <li>
+                    <input type="radio" onclick="changeYear()" id="year18" name="year"/>
+                    <label for="year18">2018</label>
+                </li>
+            </div>
+            <div>
+                <li>
+                    <input type="radio" onclick="changeYear()" id="year20" name="year" checked/>
+                    <label for="year20">2020</label>
+                </li>
+            </div>
+            <div>
+                <li>
+                    <input type="radio" onclick="changeYear()" id="year22" name="year" disabled/>
+                    <label for="year22">2022</label>
+                </li>
+            </div>
+        </div>
+        
+        <!-- Office selection -->
+        <div style="text-align:center; margin-top:9px; margin-bottom:6px;">
+            Select an election.
+        </div>
+        <div id="office-grid">
+            <div class="office-box">
+                <li>
+                    <input type="radio" onclick="changeOffice()" id="Tax" name="office"/>
+                    <label for="Tax">Fair Tax</label>
+                </li>
+            </div>
+            
+            <div class="office-box">
+                <li>
+                    <input type="radio" onclick="changeOffice()" id="Pres" name="office" checked/>
+                    <label for="Pres">President</label>
+                </li>
+            </div>
+
+            <div class="office-box">
+                <li>
+                    <input type="radio" onclick="changeOffice()" id="Sen" name="office"/>
+                    <label for="Sen">Senate</label>
+                </li>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <div id="election-container" style="display: flex; width: 70%; margin: 20px auto auto auto; gap: 20px 50px; flex-wrap: wrap; justify-content: center; align-items: center;">
+        <div id="summary-container" style="width: 450px;">
+            <div id="election-title">2020 United States presidential election in Illinois</div>
+            <div id="summary">
+                <div id="header-name">Candidate</div>
+                <div id="header-votes">Votes</div>
+                <div id="header-pct">Pct.</div>
+                <div id="win-color" style="background-color: #1276b7;"></div>
+                <div id="win-name">
+                    <div>
+                        Joe Biden 
+                        <svg xmlns="http://www.w3.org/2000/svg" style="height:0.9em; width:0.9em; margin: 0px 0.05em 0px 0.1em; vertical-align: -0.1em;" viewBox="0 0 24 24" enable-background="new 0 0 18 18"><path fill="#1276b7" d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+                    </div>
+                </div>
+                <div id="win-votes">
+                    <div>3,471,915</div>
+                </div>
+                <div id="win-pct">
+                    <div>57.5%</div>
+                </div>
+                <div id="lose-color" style="background-color: #c93136;"></div>
+                <div id="lose-name">
+                    <div>Donald Trump</div>
+                </div>
+                <div id="lose-votes">
+                    <div>2,446,891</div>
+                </div>
+                <div id="lose-pct">
+                    <div>40.6%</div>
+                </div>
+                <div id="total-name">
+                    <div>Total</div>
+                </div>
+                <div id="total-votes">
+                    <div>6,033,744</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="map-container">
+            <!-- Election map -->
+            <div id="map"></div>
+
+            <!-- Legend -->
+            <div id="legend-container" style="display: flex; width: 100%; align-items: center; justify-content: center;">
+                <div class="legend">
+                    <div id="dem-legend" style="text-align: right; margin-right: 3px;">
+                        Dem.
+                    </div>
+                    <div class="legend-box">
+                        <div class="gradient-box" style="background-color: #1276b7; opacity: 0.2;"></div>
+                    </div>
+                    <div class="legend-box">
+                        <div class="gradient-box" style="background-color: #1276b7; opacity: 0.4;"></div>
+                    </div>
+                    <div class="legend-box">
+                        <div class="gradient-box" style="background-color: #1276b7; opacity: 0.6;"></div>
+                    </div>
+                    <div class="legend-box">
+                        <div class="gradient-box" style="background-color: #1276b7; opacity: 0.8;"></div>
+                    </div>
+                    <div class="legend-box">
+                        <div class="gradient-box" style="background-color: #1276b7; opacity: 1;"></div>
+                    </div>
+                    <div id="rep-legend" style="text-align: right; margin-right: 3px;">
+                        Rep.
+                    </div>
+                    <div class="legend-box">
+                        <div class="gradient-box" style="background-color: #c93136; opacity: 0.2;"></div>
+                    </div>
+                    <div class="legend-box">
+                        <div class="gradient-box" style="background-color: #c93136; opacity: 0.4;"></div>
+                    </div>
+                    <div class="legend-box">
+                        <div class="gradient-box" style="background-color: #c93136; opacity: 0.6;"></div>
+                    </div>
+                    <div class="legend-box">
+                        <div class="gradient-box" style="background-color: #c93136; opacity: 0.8;"></div>
+                    </div>
+                    <div class="legend-box">
+                        <div class="gradient-box" style="background-color: #c93136; opacity: 1;"></div>
+                    </div>
+                    <div></div>
+                    <div></div>
+                    <div class="legend-box">
+                        <div class="label-box">50</div>
+                    </div>
+                    <div class="legend-box">
+                        <div class="label-box">60</div>
+                    </div>
+                    <div class="legend-box">
+                        <div class="label-box">70</div>
+                    </div>
+                    <div class="legend-box">
+                        <div class="label-box">80%</div>
+                    </div>
+                    <div></div>
+                </div>    
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="data.js"></script>
 <script src="script.js"></script>
  
 </body>
