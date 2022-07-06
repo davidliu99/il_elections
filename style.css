@@ -3,12 +3,291 @@ body {
     padding: 0; 
 }
 
+/* Page header */
+#header {
+    margin-top: 18px;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+/* Page body */
+#container {
+    font-family: 'Helvetica Neue', 'Clear Sans', sans-serif;
+    max-width: 90%;
+    margin: 0 auto;
+    font-size: 16px;
+}
+
+/* ------------------------------------- Selections section ------------------------------------- */
+.settings {
+    list-style-type: none;
+    margin-top: 6px;
+    padding: 0;
+}
+
+/* Radio input buttons */
+li {
+    box-sizing: border-box;
+    width: 100%;
+    height: 2rem;
+    position: relative;
+    border-radius: 0.25rem;
+    border: 2px solid #e5e7eb;
+}
+  
+label,
+input {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    font-weight: 400;
+}
+  
+input[type="radio"] {
+    display: none;
+}
+  
+input[type="radio"]:checked+label,
+.Checked+label {
+    font-weight: 600;
+    background-color: #eeeef1;
+}
+  
+input[type="radio"]:disabled+label {
+    color: grey;
+}
+
+input[type="radio"]:disabled+label:hover {
+    cursor: auto;
+}
+
+label {
+    padding: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+  
+input[type="radio"]:not([disabled])+label:hover {
+    background-color: #f5f5f9;
+}
+
+/* Years to choose from */
+#year-grid {
+    display: grid;
+    grid-template: auto auto / repeat(7, 80px);
+    margin: auto;
+    width: 578px;
+    column-gap: 3px;
+    row-gap: 3px;
+}
+
+/* Offices to choose from */
+#office-grid {
+    display: flex;
+    max-width: 750px;
+    margin: auto;
+    margin-bottom: 18px;
+    gap: 3px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.office-box {
+    width: 120px;
+}
+
+/* ---------------------------------------- Main section ---------------------------------------- */
+#election-container {
+    display: flex; 
+    width: 70%; 
+    margin: 20px auto auto auto; 
+    gap: 20px 60px; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    align-items: flex-start;
+}
+
+/* -------------------------------------- Election summary -------------------------------------- */
+#summary-container {
+    width: 500px; 
+    margin-top: 12px;
+}
+
+/* Election summary section */
+#election-title {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+#summary {
+    display: grid;
+    grid-template: "header-c header-n header-pty header-v header-p" auto
+                   "win-c win-n win-pty win-v win-p" 30px
+                   "lose-c lose-n lose-pty lose-v lose-p" 30px 
+                   "total-c total-n total-pty total-v total-p" 30px / 10px 200px 60px 120px 80px;
+    column-gap: 5px;
+    row-gap: 4px;
+    margin-bottom: 12px;
+}
+
+#header-name {
+    grid-area: header-n;
+    font-size: 0.8rem;
+    color: gray;
+}
+
+#header-party {
+    grid-area: header-pty;
+    font-size: 0.8rem;
+    color: gray;
+}
+
+#header-votes {
+    grid-area: header-v;
+    font-size: 0.8rem;
+    color: gray;
+    text-align: right;
+}
+
+#header-pct {
+    grid-area: header-p;
+    font-size: 0.8rem;
+    color: gray;
+    text-align: right;
+}
+
+#win-color {
+    grid-area: win-c;
+}
+
+#win-name {
+    grid-area: win-n;
+    display: flex;
+    align-items: center;
+}
+
+#win-party {
+    grid-area: win-pty;
+    display: flex;
+    align-items: center;
+    color: gray;
+}
+
+#win-votes {
+    grid-area: win-v;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#win-pct {
+    grid-area: win-p;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    justify-content: flex-end;
+}
+
+#lose-color {
+    grid-area: lose-c;
+}
+
+#lose-name {
+    grid-area: lose-n;
+    display: flex;
+    align-items: center;
+}
+
+#lose-party {
+    grid-area: lose-pty;
+    display: flex;
+    align-items: center;
+    color: gray;
+}
+
+#lose-votes {
+    grid-area: lose-v;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#lose-pct {
+    grid-area: lose-p;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    justify-content: flex-end;
+}
+
+#total-name {
+    grid-area: total-n;
+    display: flex;
+    align-items: center;
+    color: gray;
+}
+
+#total-votes {
+    grid-area: total-v;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: gray;
+}
+
+/* One-sentence description of results */
+#description {
+    line-height: 1.4;
+}
+
+/* Breakdown by region, toggleable */
+#breakdown {
+    display: grid;
+    grid-template:  20px repeat(5, 25px) / 220px 184px 80px; /* repeat(3, 20px) / 65px repeat(5, 85px); */
+    font-size: 0.9em;
+    gap: 3px;
+    margin-top: 6px;
+}
+
+.breakdown-header {
+    display: flex;
+    align-items: flex-end;
+    font-size: 0.889em;
+    color: gray;
+}
+
+.region-box {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+}
+
+.margin-box {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.share-box {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    font-size: 1em;
+}
+
+/* -------------------------------------------- Map -------------------------------------------- */
 #map {  
     width: 400px;
     height: 420px;
     margin: 3px auto 3px auto;
 }
 
+/* Maplibre popup */
 .mapboxgl-popup-content h4 {
     font-weight: 500;
     border-width: 0px 0px 0.5px 0px;
@@ -97,98 +376,18 @@ body {
 }
 
 .mapboxgl-popup {
+    position: absolute;
     max-width: 400px;
     font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    z-index: 100;
 }
 
-#container {
-    font-family: 'Helvetica Neue', 'Clear Sans', sans-serif;
-    max-width: 90%;
-    margin: 0 auto;
-    font-size: 16px;
-}
-
-#header {
-    margin-top: 18px;
-    margin-bottom: 6px;
-    font-weight: 500;
-}
-
-.settings {
-    list-style-type: none;
-    margin-top: 6px;
-    padding: 0;;
-}
-
-li {
-    box-sizing: border-box;
-    width: 100%;
-    height: 2rem;
-    position: relative;
-    border-radius: 0.25rem;
-    border: 2px solid #e5e7eb;
-}
-  
-label,
-input {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    font-weight: 400;
-}
-  
-input[type="radio"] {
-    display: none;
-}
-  
-input[type="radio"]:checked+label,
-.Checked+label {
-    font-weight: 600;
-    background-color: #eeeef1;
-}
-  
-input[type="radio"]:disabled+label {
-    color: grey;
-}
-
-input[type="radio"]:disabled+label:hover {
-    cursor: auto;
-}
-
-label {
-    padding: 5px;
-    cursor: pointer;
-    text-align: center;
-}
-  
-input[type="radio"]:not([disabled])+label:hover {
-    background-color: #f5f5f9;
-}
-
-#year-grid {
-    display: grid;
-    grid-template: auto auto / repeat(7, 80px);
-    margin: auto;
-    width: 578px;
-    column-gap: 3px;
-    row-gap: 3px;
-}
-
-#office-grid {
-    display: flex;
-    max-width: 750px;
-    margin: auto;
-    margin-bottom: 18px;
-    gap: 3px;
+/* Legend below map */
+#legend-container {
+    display: flex; 
+    width: 100%; 
+    align-items: center; 
     justify-content: center;
-    flex-wrap: wrap;
-}
-
-.office-box {
-    width: 120px;
 }
 
 .legend {
@@ -200,12 +399,18 @@ input[type="radio"]:not([disabled])+label:hover {
     font-size: 0.7em;
 }
 
+#dem-legend, #rep-legend {
+    text-align: right; 
+    width: 30px; 
+    margin-right: 3px;
+}
+
 .legend-box {
     display: flex;
     grid-column: auto / span 2;
 }
 
-.gradient-box {
+.gradient-box-dem, .gradient-box-rep {
     height: 10px;
     width: 100%;
     align-self: flex-end;
@@ -216,146 +421,4 @@ input[type="radio"]:not([disabled])+label:hover {
     color: gray; 
     text-align: center;
     width: 100%;
-}
-
-#election-title {
-    font-size: 1.2rem;
-    font-weight: 500;
-    margin-bottom: 12px;
-}
-
-#summary {
-    display: grid;
-    grid-template: "header-c header-n header-v header-p" auto
-                   "win-c win-n win-v win-p" 30px
-                   "lose-c lose-n lose-v lose-p" 30px 
-                   "total-c total-n total-v total-p" 30px / 10px 200px 120px 80px;
-    column-gap: 5px;
-    row-gap: 4px;
-    margin-bottom: 12px;
-}
-
-#header-name {
-    grid-area: header-n;
-    font-size: 0.8rem;
-    color: gray;
-}
-
-#header-votes {
-    grid-area: header-v;
-    font-size: 0.8rem;
-    color: gray;
-    text-align: right;
-}
-
-#header-pct {
-    grid-area: header-p;
-    font-size: 0.8rem;
-    color: gray;
-    text-align: right;
-}
-
-#win-color {
-    grid-area: win-c;
-}
-
-#win-name {
-    grid-area: win-n;
-    display: flex;
-    align-items: center;
-}
-
-#win-votes {
-    grid-area: win-v;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
-
-#win-pct {
-    grid-area: win-p;
-    display: flex;
-    align-items: center;
-    font-weight: 500;
-    justify-content: flex-end;
-}
-
-#lose-color {
-    grid-area: lose-c;
-}
-
-#lose-name {
-    grid-area: lose-n;
-    display: flex;
-    align-items: center;
-}
-
-#lose-votes {
-    grid-area: lose-v;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
-
-#lose-pct {
-    grid-area: lose-p;
-    display: flex;
-    align-items: center;
-    font-weight: 500;
-    justify-content: flex-end;
-}
-
-#total-name {
-    grid-area: total-n;
-    display: flex;
-    align-items: center;
-    color: gray;
-}
-
-#total-votes {
-    grid-area: total-v;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    color: gray;
-}
-
-#description {
-    line-height: 1.4;
-}
-
-#breakdown {
-    display: grid;
-    grid-template: repeat(3, 20px) / 70px repeat(5, 75px);
-    font-size: 0.9em;
-    gap: 3px;
-    margin-top: 6px;
-}
-
-.breakdown-header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
-    font-size: 0.889em;
-    color: gray;
-}
-
-.region-box {
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-}
-
-.margin-box {
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    font-weight: 500;
-}
-
-.share-box {
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    font-size: 0.9em;
 }
