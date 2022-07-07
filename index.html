@@ -108,17 +108,10 @@
         </div>
         
         <!-- Office selection -->
-        <div style="text-align:center; margin-top:9px; margin-bottom:6px;">
-            Select an election.
+        <div style="text-align:center; margin-top:9px; margin-bottom:6px;" id="select-an-office">
+            Select an office or <span style="color:rgb(137, 75, 169);">referendum</span>.
         </div>
         <div id="office-grid">
-            <div class="office-box">
-                <li>
-                    <input type="radio" onclick="changeOffice()" id="Tax" name="office"/>
-                    <label for="Tax">Fair Tax</label>
-                </li>
-            </div>
-            
             <div class="office-box">
                 <li>
                     <input type="radio" onclick="changeOffice()" id="Pres" name="office" checked/>
@@ -130,6 +123,13 @@
                 <li>
                     <input type="radio" onclick="changeOffice()" id="Sen" name="office"/>
                     <label for="Sen">Senate</label>
+                </li>
+            </div>
+
+            <div class="office-box">
+                <li class="purple">
+                    <input class="purple" type="radio" onclick="changeOffice()" id="Tax" name="office"/>
+                    <label for="Tax">Fair Tax</label>
                 </li>
             </div>
         </div>
@@ -162,7 +162,7 @@
                 </div>
                 <div id="lose-color" style="background-color: #c93136;"></div>
                 <div id="lose-name">
-                    <div>Donald Trump</div>
+                    <div>Donald Trump*</div>
                 </div>
                 <div id="lose-party">
                     <div>Republican</div>
@@ -184,46 +184,19 @@
             <div id="description">
                 Joe Biden won by a margin of <span style="color: #1276b7;">1,025,024 votes</span>, or <span style="font-weight: 600; color: #1276b7;">17.0%</span>. 
             </div>
+
+            <div style="display:none;" id="referendum-description-container">
+                <br>
+                <div onclick="toggleReferendumDescription()" style="display:inline-block; cursor:pointer;">
+                    <span style="vertical-align:1px; width:10px; display:inline-block;" id="referendum-arrow">▸</span> <b>About this amendment</b>
+                    <div style="display:none;" id="referendum-description"></div>
+                </div>
+            </div>
+
             <br>
             <div onclick="toggleBreakdown()" style="display:inline-block; cursor:pointer;">
-                <span style="vertical-align:1px; width:10px; display:inline-block;" id="arrow">▸</span> <b>Breakdown by region</b>
+                <span style="vertical-align:1px; width:10px; display:inline-block;" id="arrow">▸</span> <b>Summary by region</b>
             </div>
-            <!-- <div id="breakdown" style="display:none;">
-                <div class="breakdown-header">
-                    Region
-                </div>
-                <div class="region-box">
-                    Chicago
-                </div>
-                <div class="region-box">
-                    Suburbs
-                </div>
-                <div class="region-box">
-                    North
-                </div>
-                <div class="region-box">
-                    Central
-                </div>
-                <div class="region-box">
-                    South
-                </div>
-                <div class="breakdown-header">
-                    Margin
-                </div>
-                <div class="margin-box" id="chicago-margin"></div>
-                <div class="margin-box" id="suburbs-margin"></div>
-                <div class="margin-box" id="northern-margin"></div>
-                <div class="margin-box" id="central-margin"></div>
-                <div class="margin-box" id="southern-margin"></div>
-                <div class="breakdown-header">
-                    Vote share
-                </div>
-                <div class="share-box" id="chicago-share"></div>
-                <div class="share-box" id="suburbs-share"></div>
-                <div class="share-box" id="northern-share"></div>
-                <div class="share-box" id="central-share"></div>
-                <div class="share-box" id="southern-share"></div>
-            </div> -->
             <div id="breakdown" style="display:none;">
                 <div class="breakdown-header" style="justify-content:flex-start;">Region</div>
                 <div class="breakdown-header" style="justify-content:center;">Margin</div>
@@ -318,7 +291,7 @@
             </div>
 
             <!-- Counties / Regions selector -->
-            <div style="list-style-type: none; width: 100px; text-align:center; position:absolute; top: 280px; left:20px;">
+            <div style="list-style-type: none; width: 100px; text-align:center; position:absolute; top: 280px; left:10px;">
                 View:
                 <li style="margin-top: 3px;">
                     <input type="radio" onclick="viewCounties()" id="viewCounties" name="view" checked/>
@@ -337,7 +310,8 @@
 <script src="script.js"></script>
 <script>
     // Force load map, since sometimes the map doesn't load.
-    setTimeout(updateElection, 1000);
+    setTimeout(updateElection, 2000);
+    setTimeout(updateElection, 4000);
 </script>
 </body>
 </html>
